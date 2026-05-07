@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ideas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- HEADER / NAV -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo">MySpace</a>
+      <nav class="site-nav">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#" class="active">Ideas</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="ideas-hero">
+    <div class="container">
+      <h1>Ideas Board</h1>
+      <p>Explore, vote on, and submit ideas that shape what comes next.</p>
+      <button class="btn-primary" id="openModalBtn">+ Submit an Idea</button>
+    </div>
+  </section>
+
+  <!-- CONTROLS -->
+  <section class="ideas-controls">
+    <div class="container controls-inner">
+      <!-- Search -->
+      <div class="search-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Search ideas…" />
+      </div>
+
+      <!-- Category filter -->
+      <div class="filter-chips" id="filterChips">
+        <button class="chip active" data-cat="all">All</button>
+        <button class="chip" data-cat="design">Design</button>
+        <button class="chip" data-cat="engineering">Engineering</button>
+        <button class="chip" data-cat="product">Product</button>
+        <button class="chip" data-cat="community">Community</button>
+        <button class="chip" data-cat="other">Other</button>
+      </div>
+
+      <!-- Sort -->
+      <div class="sort-wrap">
+        <label for="sortSelect">Sort by</label>
+        <select id="sortSelect">
+          <option value="popular">Most Popular</option>
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDEAS GRID -->
+  <main class="ideas-main">
+    <div class="container">
+      <div class="ideas-grid" id="ideasGrid">
+        <!-- Cards injected by JS -->
+      </div>
+      <p class="empty-state hidden" id="emptyState">No ideas match your search. Be the first to submit one!</p>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 MySpace. Built with curiosity.</p>
+    </div>
+  </footer>
+
+  <!-- SUBMIT MODAL -->
+  <div class="modal-overlay hidden" id="modalOverlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="closeModalBtn" aria-label="Close">&times;</button>
+      <h2 id="modalTitle">Submit Your Idea</h2>
+      <form id="ideaForm" novalidate>
+        <div class="form-group">
+          <label for="ideaTitle">Title <span aria-hidden="true">*</span></label>
+          <input type="text" id="ideaTitle" placeholder="A concise, catchy title" maxlength="80" required />
+          <span class="field-error" id="titleError"></span>
+        </div>
+        <div class="form-group">
+          <label for="ideaDesc">Description <span aria-hidden="true">*</span></label>
+          <textarea id="ideaDesc" rows="4" placeholder="Describe your idea in detail…" maxlength="300" required></textarea>
+          <span class="char-count" id="charCount">0 / 300</span>
+          <span class="field-error" id="descError"></span>
+        </div>
+        <div class="form-group">
+          <label for="ideaCategory">Category <span aria-hidden="true">*</span></label>
+          <select id="ideaCategory" required>
+            <option value="">— Select a category —</option>
+            <option value="design">Design</option>
+            <option value="engineering">Engineering</option>
+            <option value="product">Product</option>
+            <option value="community">Community</option>
+            <option value="other">Other</option>
+          </select>
+          <span class="field-error" id="catError"></span>
+        </div>
+        <div class="form-group">
+          <label for="ideaAuthor">Your Name (optional)</label>
+          <input type="text" id="ideaAuthor" placeholder="Anonymous" maxlength="40" />
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-ghost" id="cancelModalBtn">Cancel</button>
+          <button type="submit" class="btn-primary">Submit Idea</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast hidden" id="toast">Idea submitted successfully!</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
